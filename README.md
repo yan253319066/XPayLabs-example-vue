@@ -1,17 +1,17 @@
-# XPay Labs SDK Vue 3 Example
+# XPay Labs Vue 3 Example — Crypto Payment Gateway Integration Demo
 
 English | [中文](README.zh.md)
 
-This project demonstrates how to integrate the XPay Labs cryptocurrency payment gateway SDK into a Vue 3 application.
+A **Vue 3** example application demonstrating how to integrate the [XPay Labs](https://www.xpaylabs.com) self-hosted, non-custodial crypto payment gateway SDK into a Vue application. Accept USDT/USDC payments on TRON, EVM chains, and SUI.
 
 ## Features
 
-- Initialize the XPay Labs SDK with your API credentials
+- Initialize the XPay Labs SDK with API credentials
 - Create cryptocurrency collection orders
 - Display payment QR codes for customers
-- Check payment status
-- Get supported cryptocurrencies and chains
-- Verify webhook signatures
+- Real-time payment status checking
+- Webhook verification demo
+- Vite-powered development
 
 ## Prerequisites
 
@@ -20,129 +20,48 @@ This project demonstrates how to integrate the XPay Labs cryptocurrency payment 
 
 ## Installation
 
-1. Clone this repository
-2. Install dependencies:
-
 ```bash
 npm install
 ```
 
 ## Configuration
 
-To use this example with your XPay Labs account, you'll need to:
-
-1. Sign up for an XPay Labs account at [www.xpaylabs.com](https://www.xpaylabs.com)
-2. Obtain your API key and secret from the dashboard
-3. Configure your credentials using one of these methods:
-   - Create a `.env` file with the following variables:
-     ```
-     VITE_XPAY_API_KEY=your-api-key
-     VITE_XPAY_API_SECRET=your-api-secret
-     VITE_XPAY_BASE_URL=https://api.xpaylabs.com
-     ```
-   - Or enter your credentials directly in the Configuration section of the demo
-
-## Running the Example
-
-Start the development server:
-
 ```bash
-npm run dev
-```
-
-Then open your browser to http://localhost:3000
-
-## Project Structure
-
-- `src/views/Home.vue` - Landing page with SDK information
-- `src/views/PaymentDemo.vue` - Main demo page with SDK integration examples
-- `src/components/PaymentQRCode.vue` - Component for displaying payment QR codes
-- `src/components/WebhookHandler.vue` - Component for webhook verification demo
-
-## SDK Integration Steps
-
-### 1. Install the SDK
-
-```bash
-npm install @xpaylabs/node-sdk
-```
-
-### 2. Import and Initialize
-
-```javascript
-import { XPay } from '@xpaylabs/node-sdk';
-
-const xpay = new XPay({
-  apiKey: 'your-api-key',
-  apiSecret: 'your-api-secret',
-  baseUrl: 'https://api.xpaylabs.com'
-});
-```
-
-### 3. Create a Collection Order
-
-```javascript
-const response = await xpay.createCollection({
-  amount: 100,
-  symbol: 'USDT',
-  chain: 'TRON',
-  orderId: 'order-123456',
-  callbackUrl: 'https://your-callback-url.com/webhook'
-});
-
-// The response contains the payment address and other details
-console.log(response.paymentAddress);
-```
-
-### 4. Check Order Status
-
-```javascript
-const status = await xpay.getOrderStatus('order-123456');
-console.log(status);
-```
-
-### 5. Verify Webhooks
-
-```javascript
-// In your webhook handler
-const isValid = xpay.verifyWebhook(
-  JSON.stringify(webhookBody),
-  signature,
-  timestamp
-);
-
-if (isValid) {
-  // Process the webhook
-  const event = xpay.parseWebhook(JSON.stringify(webhookBody));
-  console.log(event.notifyType, event.data);
-}
-```
-
-## Environment Variables
-
-This example uses environment variables to securely store API credentials. In a Vite project, environment variables that should be exposed to the client must be prefixed with `VITE_`.
-
-Create a `.env` file in the root directory with the following variables:
-
-```
+# Create .env with your credentials
 VITE_XPAY_API_KEY=your-api-key
 VITE_XPAY_API_SECRET=your-api-secret
 VITE_XPAY_BASE_URL=https://api.xpaylabs.com
 ```
 
-These variables are accessed in the code using `import.meta.env.VITE_VARIABLE_NAME`.
+## Running
 
-## Production Considerations
+```bash
+npm run dev
+```
 
-When deploying to production:
+Open [http://localhost:3000](http://localhost:3000)
 
-1. Never expose your API secret in client-side code
-   - For production applications, handle sensitive operations like signature generation on the server side
-   - Use environment variables for configuration, but be aware that client-side environment variables are still visible in the browser
-2. Implement proper error handling and retry mechanisms
-3. Set up webhook verification to securely receive payment notifications
-4. Consider implementing a server-side component for sensitive operations
+## Project Structure
+
+```
+src/
+├── views/
+│   ├── Home.vue              # Landing page with SDK information
+│   └── PaymentDemo.vue       # Main demo with SDK integration
+├── components/
+│   ├── PaymentQRCode.vue     # QR code display component
+│   └── WebhookHandler.vue    # Webhook verification demo
+```
+
+## Related Resources
+
+- [XPay Labs Website](https://www.xpaylabs.com)
+- [Node.js SDK](https://github.com/yan253319066/XPayLabs-node-sdk)
+- [Java SDK](https://github.com/yan253319066/XPayLabs-java-sdk)
+- [React Example](https://github.com/yan253319066/XPayLabs-example-react)
+- [Vue Demo (E-Commerce)](https://github.com/yan253319066/XPayLabs-demo-vue)
+- [Checkout Page](https://github.com/yan253319066/XPayLabs-checkout)
 
 ## License
 
-This example project is MIT licensed.
+MIT
