@@ -29,6 +29,11 @@ npm run dev
 - [Java SDK](https://github.com/yan253319066/XPayLabs-java-sdk)
 - [React 示例](https://github.com/yan253319066/XPayLabs-example-react)
 
+## 仓库
+
+**GitHub:** [yan253319066/XPayLabs-example-vue](https://github.com/yan253319066/XPayLabs-example-vue)
+**Gitee（镜像）:** [XPayLabs/XPayLabs-example-vue](https://gitee.com/XPayLabs/XPayLabs-example-vue)
+
 ## 许可证
 
 MIT
